@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xingfeng2510/gotutor/hash"
+	"github.com/xingfeng2510/gotutor/algorithm/hash"
 	"golang.org/x/net/context"
 )
 
