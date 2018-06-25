@@ -15,6 +15,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/xingfeng2510/gotutor/hash"
 	"golang.org/x/net/context"
 )
 
@@ -612,15 +613,19 @@ type foo1 struct {
 	bar string
 }
 
-type fooHandler struct {}
+type fooHandler struct{}
 
 func (h fooHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("hello"))
 }
 
 func main() {
-	http.Handle("/foo", fooHandler{})
-	http.ListenAndServe(":8080", nil)
+	h := hash.NewFNV32()
+	io.WriteString(h, "hello world")
+	fmt.Printf("%x\n", h.Sum(nil))
+
+	// http.Handle("/foo", fooHandler{})
+	// http.ListenAndServe(":8080", nil)
 
 	//cmd := exec.Command("sleep", "60")
 	//err := cmd.Start()
